@@ -50,24 +50,4 @@ public class CountryController {
 	public Country create(@RequestBody Country country) {
 		return repository.save(country);
 	}
-
-	@PutMapping(value = "/{id}")
-	public ResponseEntity<Country> update(@PathVariable("id") long id, @RequestBody Country country) {
-		return repository.findById(id).map(record -> {
-			record.setName(country.getName());
-			record.setContinent(country.getContinent());
-			record.setLandArea(country.getLandArea());
-			record.setSeaArea(country.getSeaArea());
-			Country updated = repository.save(record);
-			return ResponseEntity.ok().body(updated);
-		}).orElse(ResponseEntity.notFound().build());
-	}
-
-	@DeleteMapping(path = { "/{id}" })
-	public ResponseEntity<?> delete(@PathVariable("id") long id) {
-		return repository.findById(id).map(record -> {
-			repository.deleteById(id);
-			return ResponseEntity.ok().build();
-		}).orElse(ResponseEntity.notFound().build());
-	}
 }

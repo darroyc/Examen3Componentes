@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -33,10 +34,14 @@ public class Country {
 	private Long seaArea;
 
 	@JsonIgnore
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="country", cascade = CascadeType.ALL)
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="country")
 	private Set<PoliticalDivision> politicalDivisions;
 	
 	@JsonIgnore
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="country", cascade = CascadeType.ALL)
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="country")
 	private Set<BiologicalDivision> biologicalDivisions;
+	
+	@JsonIgnore
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="country")
+	private Set<Being> beings;
 }

@@ -56,22 +56,4 @@ public class PoliticalDivisionController {
 	public PoliticalDivision create(@RequestBody PoliticalDivision politicalDivision) {
 		return repository.save(politicalDivision);
 	}
-
-	@PutMapping(value = "/{id}")
-	public ResponseEntity<PoliticalDivision> update(@PathVariable("id") long id, @RequestBody PoliticalDivision politicalDivision) {
-		return repository.findById(id).map(record -> {
-			record.setName(politicalDivision.getName());
-			record.setCountry(politicalDivision.getCountry());
-			PoliticalDivision updated = repository.save(record);
-			return ResponseEntity.ok().body(updated);
-		}).orElse(ResponseEntity.notFound().build());
-	}
-
-	@DeleteMapping(path = { "/{id}" })
-	public ResponseEntity<?> delete(@PathVariable("id") long id) {
-		return repository.findById(id).map(record -> {
-			repository.deleteById(id);
-			return ResponseEntity.ok().build();
-		}).orElse(ResponseEntity.notFound().build());
-	}
 }

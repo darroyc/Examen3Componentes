@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -40,6 +41,6 @@ public class PoliticalDivision {
 	private Country country;
 	
 	@JsonIgnore
-	@ManyToMany(mappedBy = "politicalDivisions")
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="politicalDivision")
 	private Set<BiologicalDivision> biologicalDivisions;
 }
