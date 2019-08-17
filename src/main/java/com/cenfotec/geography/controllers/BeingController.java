@@ -52,7 +52,7 @@ public class BeingController {
 		}else if(id == null) {
 			id = (long) 0;
 		}
-		return repository.findByCountryIdOrCientificNameContainingAndType(id, name, type).map(record -> ResponseEntity.ok().body(record))
+		return repository.findByCountryIdOrScientificNameContainingAndType(id, name, type).map(record -> ResponseEntity.ok().body(record))
 				.orElse(ResponseEntity.notFound().build());		
 	}
 

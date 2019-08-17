@@ -39,7 +39,7 @@ public class Being {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String popularNames;
-	private String cientificName;
+	private String scientificName;
 	private String endangered;
 	private Integer population;
 	private String type;
